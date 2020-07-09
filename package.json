@@ -1,0 +1,19 @@
+{
+  "name": "swaggertut",
+  "version": "1.0.0",
+  "description": "learning swagger ui",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "shishir",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "mongoose": "^5.9.21",
+    "nodemon": "^2.0.4",
+    "swagger-ui-express": "^4.1.4"
+  }
+}

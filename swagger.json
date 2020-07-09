@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API Title",
+        "version": "1.0"
+    },
+    "servers": [{
+        "url": "http://localhost:3000/api"
+    }],
+    "paths": {
+        "/members": {
+            "get": {
+                "description": "test api documentation! ",
+                "operationId": "test01",
+                "responses": {
+                    "200": {
+                        "description": "test successful",
+                        "content": {
+                            "text/html": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "There are no members currently"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add a new member to the db",
+                "operationId": "addMember",
+                "requestBody": {
+                    "description": "Member object that nees to be added",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/member"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "error": {
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Returns member added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/member"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description":"Returns array of error",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref":"#/components/schemas/errors"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    },
+    "components": {
+        "schemas": {
+            "member": {
+                "type": "object",
+                "properties": {
+                   
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+
+                }
+            },
+            "errors": {
+                "type": "array",
+                "items":{
+                    "type": "object",
+                    "properties": {
+                        "msg":{
+                            "type": "string"
+                        },
+                        "param":{
+                            "type":"string"
+                        },
+                        "location":{
+                            "type":"string" 
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
